@@ -5,23 +5,12 @@ using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    public enum TouchPhase
+    private float x;
+
+    public void ChangeCameraPos(float newXPos, float speed)
     {
-        RightPhase,
-        LeftPhase,
-        MiddlePhase
-    }
-    Camera camera;
-
-    void Start()
-    {
-        camera = GetComponentInChildren<Camera>();
-    }
-
-
-    void ChangeCameraState()
-    {
-
+        x = Mathf.Lerp(x, newXPos, Time.deltaTime * speed);
+        //transform.position.Move((x - transform.position.x) * Vector3.right);
     }
 
 }
