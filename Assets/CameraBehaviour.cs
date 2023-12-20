@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    private float x;
+    private Vector3 newPos;
+
 
     public void ChangeCameraPos(float newXPos, float speed)
     {
-        x = Mathf.Lerp(x, newXPos, Time.deltaTime * speed);
-        //transform.position.Move((x - transform.position.x) * Vector3.right);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(newXPos / 2, transform.position.y, transform.position.z), Time.deltaTime * speed);
     }
-
 }

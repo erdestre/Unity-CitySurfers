@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     public bool swipeLeft, swipeRight, swipeUp, swipeDown;
     public float speed;
     public float jumpHeight;
+    public CameraBehaviour camera;
     float newXPos;
     private CharacterController m_char;
     private Animator m_Animator;
@@ -19,7 +21,8 @@ public class Player : MonoBehaviour
     private bool inRoll;
     private float colHeight;
     private float colCenterY;
-
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
 
     void Start()
     {
@@ -31,10 +34,37 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        /*
         swipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
         swipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
         swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
+        */
+        startTouchPosition = Vector2.zero;
+        endTouchPosition = Vector2.zero;
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            startTouchPosition = Input.GetTouch(0).position;
+        }
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            endTouchPosition = Input.GetTouch(0).position;
+            Vector2 temp;
+            temp.x = Mathf.Abs(startTouchPosition.x) - Mathf.Abs(endTouchPosition.x);
+            temp.y = Mathf.Abs(startTouchPosition.y) - Mathf.Abs(endTouchPosition.y);
+            if (temp.x > temp.y)
+            {
+                swipeRight = endTouchPosition.x < startTouchPosition.x;
+                if (!swipeRight) swipeLeft = true;
+            }
+            else
+            {
+                swipeUp = endTouchPosition.y < startTouchPosition.y;
+                if (!swipeUp) swipeDown = true;
+            }
+
+        }
+
         if (swipeLeft)
         {
             if (m_Side == SIDE.mid)
@@ -49,7 +79,6 @@ public class Player : MonoBehaviour
                 m_Side = SIDE.mid;
                 m_Animator.Play("GoLeft");
             }
-
         }
         else if (swipeRight)
         {
@@ -65,17 +94,21 @@ public class Player : MonoBehaviour
                 m_Side = SIDE.mid;
                 m_Animator.Play("GoRight");
             }
-
         }
         Vector3 moveVector = new Vector3(x - transform.position.x, y * Time.deltaTime, 0);
         x = Mathf.Lerp(x, newXPos, Time.deltaTime * speed);
+        camera.ChangeCameraPos(newXPos, speed);
         m_char.Move(moveVector);
         Jump();
         Roll();
-
-
+        ResetSwipe();
     }
+
+    private void ResetSwipe() => swipeRight = swipeDown = swipeLeft = swipeUp = false;
+
     internal float RollCounter;
+
+
     void Roll()
     {
         RollCounter -= Time.deltaTime;
