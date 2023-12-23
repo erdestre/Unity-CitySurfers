@@ -791,11 +791,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: 9d3db7a6-8230-427b-8007-1b8f6a03667f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Runner
+  organizationId: comertcan60
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
