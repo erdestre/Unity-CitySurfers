@@ -7,6 +7,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public SIDE m_Side = SIDE.mid;
+    public enum HitX { Left, Mid, Right, None };
+    public enum HitY { Left, Mid, Right, None };
+    public enum HitZ { Forward, Mid, Backward, None };
     public float xValue;
     public bool swipeLeft, swipeRight, swipeUp, swipeDown;
     public float speed;
@@ -23,6 +26,9 @@ public class Player : MonoBehaviour
     private float colCenterY;
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
+    public HitX hitX = HitX.None;
+    public HitY hitY = HitY.None;
+    public HitZ hitZ = HitZ.None;
 
     void Start()
     {
@@ -40,29 +46,53 @@ public class Player : MonoBehaviour
         swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
         */
-        startTouchPosition = Vector2.zero;
-        endTouchPosition = Vector2.zero;
+
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             startTouchPosition = Input.GetTouch(0).position;
+            Debug.Log("startTouchPosition " + startTouchPosition);
         }
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             endTouchPosition = Input.GetTouch(0).position;
-            Vector2 temp;
-            temp.x = Mathf.Abs(startTouchPosition.x) - Mathf.Abs(endTouchPosition.x);
-            temp.y = Mathf.Abs(startTouchPosition.y) - Mathf.Abs(endTouchPosition.y);
-            if (temp.x > temp.y)
+            Debug.Log("endTouchPosition " + endTouchPosition);
+            float differenceX;
+            float differenceY;
+            differenceX = startTouchPosition.x - endTouchPosition.x;
+            differenceY = startTouchPosition.y - endTouchPosition.y;
+            Debug.Log("differenceX " + differenceX);
+            Debug.Log("differenceY " + differenceY);
+            if (Mathf.Abs(differenceX) > 150f || Mathf.Abs(differenceY) > 150f)
             {
-                swipeRight = endTouchPosition.x < startTouchPosition.x;
-                if (!swipeRight) swipeLeft = true;
-            }
-            else
-            {
-                swipeUp = endTouchPosition.y < startTouchPosition.y;
-                if (!swipeUp) swipeDown = true;
-            }
+                if (Mathf.Abs(differenceX) > Mathf.Abs(differenceY))
+                {
+                    swipeRight = endTouchPosition.x > startTouchPosition.x;
+                    if (!swipeRight)
+                    {
+                        swipeLeft = true;
+                        Debug.Log("Left");
+                    }
+                    else
+                    {
+                        Debug.Log("Right");
+                    }
+                }
+                else
+                {
+                    swipeUp = endTouchPosition.y > startTouchPosition.y;
+                    if (!swipeUp)
+                    {
+                        swipeDown = true;
+                        Debug.Log("Down");
+                    }
+                    else
+                    {
+                        Debug.Log("Up");
 
+                    }
+                }
+
+            }
         }
 
         if (swipeLeft)
@@ -102,6 +132,11 @@ public class Player : MonoBehaviour
         Jump();
         Roll();
         ResetSwipe();
+    }
+
+    private void Run()
+    {
+
     }
 
     private void ResetSwipe() => swipeRight = swipeDown = swipeLeft = swipeUp = false;
@@ -154,6 +189,26 @@ public class Player : MonoBehaviour
                 m_Animator.Play("Fall");
             inJump = false;
         }
+    }
+    public void OnCharacterColliderHit(Collider col)
+    {
+        hitX = GetHitX(col);
+    }
+    public HitX GetHitX(Collider col)
+    {
+        Bounds char_bounds = m_char.bounds;
+        Bounds col_bounds = col.bounds;
+        float min_x = MathF.Max(col_bounds.min.x, char_bounds.min.x);
+        float max_x = MathF.Min(col_bounds.max.x, char_bounds.max.x);
+        float average = (min_x + max_x / 2f - col_bounds.min.x);
+        HitX hit;
+        if (average > col_bounds.size.x - 0.33f)
+            hit = HitX.Right;
+        else if (average < 0.33f)
+            hit = HitX.Left;
+        else
+            hit = HitX.Mid;
+        return hit;
     }
 
 
