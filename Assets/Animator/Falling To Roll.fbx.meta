@@ -1,23 +1,11 @@
 fileFormatVersion: 2
-guid: 3007bb4ea7a161d4f9ce70cd22878da1
+guid: df85efb1a6b0c6a40adf14924a726b89
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: 5214445728594633760
-    second: Death|Armature.001|mixamo.com|Layer0
-  - first:
-      74: 7309140768986971452
-    second: Death|Armature.002|mixamo.com|Layer0
-  - first:
-      74: 2664227447957609305
-    second: Death|Armature.003|mixamo.com|Layer0
-  - first:
-      74: -1922307884494368787
-    second: Death|Armature.004|mixamo.com|Layer0
-  - first:
-      74: 5808095848748649996
-    second: Death|Armature|mixamo.com|Layer0
+      74: -203655887218126122
+    second: mixamo.com
   externalObjects: {}
   materials:
     materialImportMode: 2

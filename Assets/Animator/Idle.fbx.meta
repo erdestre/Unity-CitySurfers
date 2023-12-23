@@ -4,20 +4,8 @@ ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: 3014683141681395529
-    second: Idle|Armature.001|mixamo.com|Layer0
-  - first:
-      74: 5571892322701648490
-    second: Idle|Armature.002|mixamo.com|Layer0
-  - first:
-      74: 8116346122465089736
-    second: Idle|Armature.003|mixamo.com|Layer0
-  - first:
-      74: -5575047424749212987
-    second: Idle|Armature.004|mixamo.com|Layer0
-  - first:
-      74: 6672829568236982210
-    second: Idle|Armature|mixamo.com|Layer0
+      74: -203655887218126122
+    second: mixamo.com
   externalObjects: {}
   materials:
     materialImportMode: 2
