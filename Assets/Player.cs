@@ -42,12 +42,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        /*
+
         swipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
         swipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
         swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
-        */
+
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -226,6 +226,13 @@ public class Player : MonoBehaviour
         {
             //dead animation
 
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Collectable")
+        {
+            Destroy(other.gameObject);
         }
     }
 }
