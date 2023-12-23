@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     public HitX hitX = HitX.None;
     public HitY hitY = HitY.None;
     public HitZ hitZ = HitZ.None;
+    public float runSpeed = 3f;
+    public float runSpeedIncreaseIndex = 0.5f;
 
     void Start()
     {
@@ -125,13 +127,19 @@ public class Player : MonoBehaviour
                 m_Animator.Play("GoRight");
             }
         }
-        Vector3 moveVector = new Vector3(x - transform.position.x, y * Time.deltaTime, 0);
+        Vector3 moveVector = new Vector3(x - transform.position.x, y * Time.deltaTime, runSpeed * Time.deltaTime);
         x = Mathf.Lerp(x, newXPos, Time.deltaTime * speed);
         camera.ChangeCameraPos(newXPos, speed);
         m_char.Move(moveVector);
         Jump();
         Roll();
         ResetSwipe();
+        RunSpeed();
+    }
+
+    private void RunSpeed()
+    {
+        runSpeed += runSpeedIncreaseIndex * Time.deltaTime;
     }
 
     private void Run()
