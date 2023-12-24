@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8cf25278cd1883b4b90ce761b94f81ff, type: 2}
+  - {fileID: 2100000, guid: 6ffb933066cee584b90a12fd34440338, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,7 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5355927766225299186}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Road
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -291,7 +291,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8cf25278cd1883b4b90ce761b94f81ff, type: 2}
+  - {fileID: 2100000, guid: 6ffb933066cee584b90a12fd34440338, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -423,7 +423,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8cf25278cd1883b4b90ce761b94f81ff, type: 2}
+  - {fileID: 2100000, guid: 6ffb933066cee584b90a12fd34440338, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
