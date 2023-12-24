@@ -19,7 +19,7 @@ public class MapSpawner : MonoBehaviour
     private void SpawnNextMap()
     {
         nextMap = Instantiate(GetNewMap());
-        nextMap.transform.position = currentMap.transform.position + new UnityEngine.Vector3(0, 0, 80f);
+        nextMap.transform.position = currentMap.transform.position + new UnityEngine.Vector3(0, 0, 160f);
     }
 
 
@@ -37,7 +37,7 @@ public class MapSpawner : MonoBehaviour
 
     private void SetNewPosition()
     {
-        transform.position = new UnityEngine.Vector3(transform.position.x, transform.position.y, transform.position.z + 80f);
+        transform.position = new UnityEngine.Vector3(transform.position.x, transform.position.y, transform.position.z + 160f);
     }
 
     private void SetCurrentMap() => currentMap = nextMap;

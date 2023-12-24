@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         swipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
         swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
-
+        m_Animator.SetFloat("Speed", runSpeed / 6);
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
             y -= 10;
             m_char.center = new Vector3(0, colCenterY / 2f, 0);
             m_char.height = colHeight / 2f;
-            m_Animator.CrossFadeInFixedTime("roll", 0.1f);
+            m_Animator.CrossFadeInFixedTime("Roll", 0.1f);
             inRoll = true;
             inJump = false;
         }
@@ -178,11 +178,6 @@ public class Player : MonoBehaviour
     {
         if (m_char.isGrounded)
         {
-            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Fall"))
-            {
-                m_Animator.Play("Landing");
-                inJump = false;
-            }
             if (swipeUp)
             {
                 y = jumpHeight;
@@ -193,8 +188,6 @@ public class Player : MonoBehaviour
         else
         {
             y -= jumpHeight * gravity * Time.deltaTime;
-            if (m_char.velocity.y < -0.1f)
-                m_Animator.Play("Fall");
             inJump = false;
         }
     }
