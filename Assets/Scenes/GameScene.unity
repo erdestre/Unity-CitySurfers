@@ -183,10 +183,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMap: {fileID: 1962152028}
   mapPrefabs:
-  - {fileID: 6367844868589586687, guid: 2ef73395e49313e4e8de88c706c0fedb, type: 3}
-  - {fileID: 4889329370246222256, guid: 1815ebf8f23ba5341ac37dd53d4c3e47, type: 3}
-  - {fileID: 2638621000204034176, guid: 5090ad6eb95226a43af97cdca85c6582, type: 3}
-  - {fileID: 2194054339263802264, guid: 2cdf225f33183c842a55ea8315f79a9e, type: 3}
+  - {fileID: 560846646568499662, guid: 2ef73395e49313e4e8de88c706c0fedb, type: 3}
+  - {fileID: 3296680425254354570, guid: 1815ebf8f23ba5341ac37dd53d4c3e47, type: 3}
+  - {fileID: 6057002837857556176, guid: 5090ad6eb95226a43af97cdca85c6582, type: 3}
+  - {fileID: 7151263759676014287, guid: 2cdf225f33183c842a55ea8315f79a9e, type: 3}
 --- !u!1 &11377074
 GameObject:
   m_ObjectHideFlags: 0
