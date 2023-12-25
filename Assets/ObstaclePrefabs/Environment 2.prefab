@@ -44,6 +44,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8953002709153951942}
     m_Modifications:
+    - target: {fileID: 3276105374240006437, guid: ff9979a9b579ea746afe4e23a4d4e84e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276105374240006437, guid: ff9979a9b579ea746afe4e23a4d4e84e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.002
+      objectReference: {fileID: 0}
     - target: {fileID: 5136900348348598590, guid: ff9979a9b579ea746afe4e23a4d4e84e, type: 3}
       propertyPath: m_Name
       value: Barrier 2
