@@ -22,7 +22,6 @@ public class CameraFollow : MonoBehaviour
         targetPosWithoutZ = Target.position;
         targetPosWithoutZ.x = 0;
         Vector3 followPos = targetPosWithoutZ + Offset;
-        Debug.Log(followPos);
         RaycastHit hit;
         if (Physics.Raycast(Target.position, Vector3.down, out hit, 2.5f))
             y = Mathf.Lerp(y, hit.point.y, Time.deltaTime * SpeedFollow);
