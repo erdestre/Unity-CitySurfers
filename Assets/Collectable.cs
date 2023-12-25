@@ -14,6 +14,6 @@ public class Collectable : MonoBehaviour
 
     private void RotateObject()
     {
-        gameObject.transform.Rotate(0, 50f * Time.deltaTime, 0);
+        gameObject.transform.Rotate(0, 0, 50f * Time.deltaTime);
     }
 }
