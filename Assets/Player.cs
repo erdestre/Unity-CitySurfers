@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 [System.Serializable] public enum SIDE { left, mid, right }
 
 public class Player : MonoBehaviour
@@ -34,6 +35,8 @@ public class Player : MonoBehaviour
     [SerializeField] InGameScore inGameScore;
     [SerializeField] int GoldGainAmount;
     [SerializeField] GameObject endGameCanvas;
+    [SerializeField] Music audioManager;
+    [SerializeField] AudioClip coinCollectSfx, playerDeathSfx, scoreBoardSfx;
 
     void Start()
     {
@@ -221,6 +224,8 @@ public class Player : MonoBehaviour
         {
             Destroy(other.gameObject);
             inGameScore.GainScore(GoldGainAmount);
+            audioManager.PlaySfx(coinCollectSfx);
+
         }
         if (other.tag == "Obstacle")
         {
@@ -234,7 +239,10 @@ public class Player : MonoBehaviour
         runSpeed = 0;
         runSpeedIncreaseIndex = 0;
         m_Animator.CrossFadeInFixedTime("Die", 0.1f);
+        audioManager.PlaySfx(playerDeathSfx);
+        audioManager.StopMusic();
         yield return new WaitForSeconds(2.5f);
+        audioManager.PlaySfx(scoreBoardSfx);
         endGameCanvas.SetActive(true);
     }
 }
