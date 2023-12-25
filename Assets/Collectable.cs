@@ -9,7 +9,6 @@ public class Collectable : MonoBehaviour
     private void Update()
     {
         RotateObject();
-        //ChangePostition();
     }
 
     private void RotateObject()

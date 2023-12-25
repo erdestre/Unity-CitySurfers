@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     public HitZ hitZ = HitZ.None;
     public float runSpeed = 3f;
     public float runSpeedIncreaseIndex = 0.5f;
+    [SerializeField] InGameScore inGameScore;
+    [SerializeField] int GoldGainAmount;
+    [SerializeField] GameObject endGameCanvas;
 
     void Start()
     {
@@ -103,13 +106,13 @@ public class Player : MonoBehaviour
             {
                 newXPos = -xValue;
                 m_Side = SIDE.left;
-                m_Animator.Play("GoLeft");
+                //m_Animator.Play("GoLeft");
             }
             else if (m_Side == SIDE.right)
             {
                 newXPos = 0;
                 m_Side = SIDE.mid;
-                m_Animator.Play("GoLeft");
+                //m_Animator.Play("GoLeft");
             }
         }
         else if (swipeRight)
@@ -118,13 +121,13 @@ public class Player : MonoBehaviour
             {
                 newXPos = xValue;
                 m_Side = SIDE.right;
-                m_Animator.Play("GoRight");
+                //m_Animator.Play("GoRight");
             }
             else if (m_Side == SIDE.left)
             {
                 newXPos = 0;
                 m_Side = SIDE.mid;
-                m_Animator.Play("GoRight");
+                //m_Animator.Play("GoRight");
             }
         }
         Vector3 moveVector = new Vector3(x - transform.position.x, y * Time.deltaTime, runSpeed * Time.deltaTime);
@@ -212,20 +215,26 @@ public class Player : MonoBehaviour
         return hit;
     }
 
-
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "obstacle")
-        {
-            //dead animation
-
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Collectable")
         {
             Destroy(other.gameObject);
+            inGameScore.GainScore(GoldGainAmount);
         }
+        if (other.tag == "Obstacle")
+        {
+            StartCoroutine(ActivateEndGame());
+        }
+    }
+
+    private IEnumerator ActivateEndGame()
+    {
+        speed = 0;
+        runSpeed = 0;
+        runSpeedIncreaseIndex = 0;
+        m_Animator.CrossFadeInFixedTime("Die", 0.1f);
+        yield return new WaitForSeconds(2.5f);
+        endGameCanvas.SetActive(true);
     }
 }
