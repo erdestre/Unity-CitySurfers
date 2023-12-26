@@ -12,7 +12,6 @@ public class LeaderBoard : MonoBehaviour
 
         int i = 0;
         PlayerData lastPlayer = playerDataList[playerDataList.Count - 1];
-        playerDataList.RemoveAt(playerDataList.Count - 1);
 
         playerDataList.Sort((player1, player2) => player2.playerScore.CompareTo(player1.playerScore));
 
@@ -29,19 +28,16 @@ public class LeaderBoard : MonoBehaviour
     }
     private List<PlayerData> GetTen(List<PlayerData> playerDataList, PlayerData lastPlayer)
     {
-        List<PlayerData> DataList = playerDataList;
-        int playerIndex = DataList.IndexOf(lastPlayer);
-        if (playerIndex >= 9)
+        List<PlayerData> newList;
+        if (playerDataList.Count > 10) newList = playerDataList.GetRange(0, 9);
+        else newList = playerDataList;
+
+        if (newList.Contains(lastPlayer))
         {
-            List<PlayerData> newList = new List<PlayerData>();
-            for (int i = playerIndex - 1; i > playerIndex - 9; i--)
-            {
-                newList.Add(DataList[i]);
-            }
-            newList.Add(lastPlayer);
-            return newList;
+            if (newList.Count > 9) newList.Add(playerDataList[10]);
         }
-        DataList.Add(lastPlayer);
-        return DataList;
+        else newList.Add(lastPlayer);
+
+        return newList;
     }
 }
