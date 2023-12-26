@@ -42,11 +42,6 @@ public class Music : MonoBehaviour
         audioSourceMusic.volume = musicVolumeValue;
 
     }
-    void Update()
-    {
-        Debug.Log(musicVolumeSlider.value);
-        Debug.Log(PlayerPrefs.GetFloat("MusicVolumeValue"));
-    }
 
     public void ChangeMusicToInGame()
     {

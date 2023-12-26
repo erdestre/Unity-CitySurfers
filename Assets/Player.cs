@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
     public HitZ hitZ = HitZ.None;
     public float runSpeed = 3f;
     public float runSpeedIncreaseIndex = 0.5f;
-    [SerializeField] InGameScore inGameScore;
     [SerializeField] int GoldGainAmount;
     [SerializeField] GameObject endGameCanvas;
     [SerializeField] Music audioManager;
@@ -223,7 +222,6 @@ public class Player : MonoBehaviour
         if (other.tag == "Collectable")
         {
             Destroy(other.gameObject);
-            inGameScore.GainScore(GoldGainAmount);
             audioManager.PlaySfx(coinCollectSfx);
 
         }

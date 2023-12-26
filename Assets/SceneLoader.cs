@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
     public GameObject endGameCanvas, startGameCanvas;
     public GameObject idlePlayer, Player;
     public ParticleSystem startEffect;
+
 
     private void ActivateMenu()
     {
@@ -20,7 +23,6 @@ public class SceneLoader : MonoBehaviour
         idlePlayer.SetActive(false);
         Player.SetActive(true);
         startEffect.Play();
-
     }
     public void ActivateEnd()
     {
@@ -33,5 +35,6 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(10f);
         ActivateMenu();
     }
+
 
 }
