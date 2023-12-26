@@ -7,12 +7,16 @@ using UnityEngine;
 public class MainManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI playerNameInput;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI personName;
     //[SerializeField] ScoreUI scoreUI;
     string playerName;
     int score;
     public void SetPlayerName()
     {
+        Debug.Log(playerName);
         playerName = playerNameInput.text;
+        personName.text = playerName;
     }
     public void SetScore(int score)
     {
@@ -20,8 +24,6 @@ public class MainManager : MonoBehaviour
     }
     public void SaveData()
     {
-        Debug.Log(playerName);
-        Debug.Log(score);
-        //scoreUI.SaveScore(playerName, score);
+        GetComponent<PlayerDataManager>().AddPlayer(playerName, score);
     }
 }

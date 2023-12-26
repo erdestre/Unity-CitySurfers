@@ -23,6 +23,7 @@ public class SceneLoader : MonoBehaviour
         idlePlayer.SetActive(false);
         Player.SetActive(true);
         startEffect.Play();
+        GetComponent<MainManager>().SetPlayerName();
     }
     public void ActivateEnd()
     {

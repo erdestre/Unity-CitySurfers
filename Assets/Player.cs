@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject endGameCanvas;
     [SerializeField] Music audioManager;
     [SerializeField] AudioClip coinCollectSfx, playerDeathSfx, scoreBoardSfx;
+    [SerializeField] MainManager mainManager;
 
     void Start()
     {
@@ -147,11 +148,6 @@ public class Player : MonoBehaviour
         runSpeed += runSpeedIncreaseIndex * Time.deltaTime;
     }
 
-    private void Run()
-    {
-
-    }
-
     private void ResetSwipe() => swipeRight = swipeDown = swipeLeft = swipeUp = false;
 
     internal float RollCounter;
@@ -223,7 +219,7 @@ public class Player : MonoBehaviour
         {
             Destroy(other.gameObject);
             audioManager.PlaySfx(coinCollectSfx);
-
+            mainManager.SetScore(GoldGainAmount);
         }
         if (other.tag == "Obstacle")
         {
@@ -239,6 +235,7 @@ public class Player : MonoBehaviour
         m_Animator.CrossFadeInFixedTime("Die", 0.1f);
         audioManager.PlaySfx(playerDeathSfx);
         audioManager.StopMusic();
+        mainManager.SaveData();
         yield return new WaitForSeconds(2.5f);
         audioManager.PlaySfx(scoreBoardSfx);
         endGameCanvas.SetActive(true);
