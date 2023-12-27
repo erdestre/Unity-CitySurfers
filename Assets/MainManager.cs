@@ -17,7 +17,7 @@ public class MainManager : MonoBehaviour
     public void SetPlayerName()
     {
         playerName = playerNameInput.text;
-        personName.text = playerName;
+
     }
     public void SetScore(int scoreGain)
     {
@@ -29,6 +29,5 @@ public class MainManager : MonoBehaviour
         playerDataManager = GetComponent<PlayerDataManager>();
         playerDataManager.AddPlayer(playerName, score);
         leaderBoard.FillLeaderBoard(playerDataManager.GetData());
-
     }
 }

@@ -58,7 +58,7 @@ public class PlayerDataManager : MonoBehaviour
             playerName = playerName,
             playerScore = playerScore
         };
-        if (newPlayer.playerName == null) newPlayer.playerName = "Player";
+        if (newPlayer.playerName.Trim() == null || newPlayer.playerName.Trim() == "") newPlayer.playerName = "Player";
 
         // Add the new player data to the list
         playerDataList.Add(newPlayer);
